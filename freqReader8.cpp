@@ -25,7 +25,7 @@
 //                        +----+
 uint8_t matchCount = 0;
 uint16_t prevVal = 0;
-uint8_t minn = 50; uint8_t maxx = 130; uint8_t midd = 90;
+uint8_t minn = 0; uint8_t maxx = 180; uint8_t midd = 90;
 uint16_t curr = 0;
 
 int oldVal = 0;
@@ -281,26 +281,38 @@ void moveMotor2(uint8_t pos) //break method into chunks to allow "multithreading
       S1.writeMicroseconds(minn * 10 + 600);
       S2.writeMicroseconds((minn) * 10 + 600);
       _delay_ms(del);
-
-      S1.writeMicroseconds(maxx * 10 + 600);
-      S2.writeMicroseconds((minn) * 10 + 600);
-      //_delay_ms(del);
       break;
     case 7:
-      S1.writeMicroseconds(maxx * 10 + 600);
+      //S1.writeMicroseconds(maxx * 10 + 600);
+      //S2.writeMicroseconds((midd) * 10 + 600);
+      //_delay_ms(del);
+      //S1.writeMicroseconds(midd * 10 + 600);
+      //S2.writeMicroseconds((maxx) * 10 + 600);
+      //_delay_ms(del);
+      //S1.writeMicroseconds(minn * 10 + 600);
+      //S2.writeMicroseconds((midd) * 10 + 600);
+      //_delay_ms(del);
+      //S1.writeMicroseconds(midd * 10 + 600);
+      //S2.writeMicroseconds((minn) * 10 + 600);
+      //_delay_ms(del);
+      //S1.writeMicroseconds(maxx * 10 + 600);
+      //S2.writeMicroseconds((midd) * 10 + 600);
+	  
+	  
+	  S1.writeMicroseconds(maxx * 10 + 600);
       S2.writeMicroseconds((midd) * 10 + 600);
-      _delay_ms(del);
+      _delay_ms(del*2);
       S1.writeMicroseconds(midd * 10 + 600);
-      S2.writeMicroseconds((maxx) * 10 + 600);
-      _delay_ms(del);
-      S1.writeMicroseconds(minn * 10 + 600);
       S2.writeMicroseconds((midd) * 10 + 600);
-      _delay_ms(del);
+      _delay_ms(del*2);
       S1.writeMicroseconds(midd * 10 + 600);
       S2.writeMicroseconds((minn) * 10 + 600);
-      _delay_ms(del);
+      _delay_ms(del*2);
       S1.writeMicroseconds(maxx * 10 + 600);
-      S2.writeMicroseconds((midd) * 10 + 600);
+      S2.writeMicroseconds((minn) * 10 + 600);
+      //S1.writeMicroseconds(maxx * 10 + 600);
+      //S2.writeMicroseconds((midd) * 10 + 600);
+	  
       //_delay_ms(del/2);
       break;
 	case 8:
@@ -334,7 +346,7 @@ uint16_t ReadADC(uint8_t channel,uint8_t refs)
   while(CHECKBIT(ADCSRA,ADSC));
   //Set ADIF to 1 to clear bin in IO standard way of clearing adif see 
   SETBIT(ADCSRA,ADIF);//ADCSRA |= (1 << ADIF); 17.4 p124 of datasheet
-  _delay_us(200);
+  _delay_us(300);
   return(ADC);
 }
 uint16_t mapp(double x, double in_min, double in_max, double out_min, double out_max)
