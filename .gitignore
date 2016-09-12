@@ -1,0 +1,6 @@
+#ignoring some of the files created when compiling embedded code
+*.elf
+*.hex
+*.lst
+*.map
+*.o
